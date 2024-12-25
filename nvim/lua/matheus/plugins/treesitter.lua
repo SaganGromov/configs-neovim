@@ -10,12 +10,23 @@ return {
     local treesitter = require("nvim-treesitter.configs")
 
     -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
+    treesitter.setup({
+      -- modules (default configuration for all modules)
+      modules = {},
+      -- install parsers synchronously
+      sync_install = false,
+      -- list of parsers to ignore installing
+      ignore_install = {},
+
+      -- enable syntax highlighting
       highlight = {
         enable = true,
+        disable = { "tex" }, -- Disable Tree-sitter for .tex files
       },
       -- enable indentation
-      indent = { enable = true },
+      indent = {
+        enable = true,
+      },
       -- enable autotagging (w/ nvim-ts-autotag plugin)
       autotag = {
         enable = true,
@@ -23,6 +34,7 @@ return {
       -- ensure these language parsers are installed
       ensure_installed = {
         "json",
+        "latex",
         "javascript",
         "typescript",
         "tsx",
@@ -43,6 +55,7 @@ return {
         "vimdoc",
         "c",
       },
+      -- configure incremental selection
       incremental_selection = {
         enable = true,
         keymaps = {

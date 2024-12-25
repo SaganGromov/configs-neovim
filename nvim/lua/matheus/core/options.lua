@@ -1,5 +1,17 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
+vim.g.vimtex_syntax_enabled = 0
+
+vim.g.UltiSnipsExpandTrigger = "<Tab>"
+vim.g.UltiSnipsJumpForwardTrigger = "<Tab>"
+vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>;;",
+  ":w<CR>:!pdflatex % && xdg-open %:r.pdf<CR>",
+  { noremap = true, silent = true }
+)
+
 local opt = vim.opt
 
 opt.relativenumber = true
