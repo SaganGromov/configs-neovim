@@ -5,6 +5,14 @@ return {
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
 
+    
+    -- Dynamically adjust header padding
+    local function center_header()
+      local total_lines = vim.api.nvim_get_option("lines")
+      local header_lines = #dashboard.section.header.val
+      local padding = math.max(0, math.floor((total_lines - header_lines) / 2))
+      return vim.tbl_extend("force", {}, vim.split(string.rep("\n", padding), "\n"), dashboard.section.header.val)
+    end
     -- Set header
     dashboard.section.header.val = {
       "                                                     ",
